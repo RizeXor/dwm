@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 5;        /* gaps between windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -32,11 +32,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class                instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",               NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",            NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st-256color",        NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "Alacritty",          NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ "zoom",               NULL,     NULL,           0,         1,          0,           -1,        -1 },
 };
 
 /* layout(s) */
@@ -70,7 +72,7 @@ static const char *escrotumcmd[] = { "escrotum", "-C", "-s" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,				0xff61,    spawn,          {.v = escrotumcmd } },
+	{ 0,				            0xff61,    spawn,          {.v = escrotumcmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
