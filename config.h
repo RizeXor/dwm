@@ -38,7 +38,10 @@ static const Rule rules[] = {
 	{ "st-256color",        NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Alacritty",          NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ "zoom",               NULL,     NULL,           0,         1,          0,           -1,        -1 },
+	{ "zoom",               NULL,     NULL,           0,         1,          0,           -1,       -1 },
+	{ "virt-manager",       NULL,     NULL,           0,         1,          0,           -1,       -1 },
+	{ "lutris",             NULL,     NULL,           0,         1,          0,           -1,       -1 },
+	{ "discord",            NULL,     NULL,           0,         1,          0,           -1,       -1 },
 };
 
 /* layout(s) */
@@ -68,11 +71,14 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *escrotumcmd[] = { "escrotum", "-C", "-s" };
+static const char *screenshotcmd[] = { "screenshot.sh", NULL };
+//static const char *screenshotcmd[] = { "scrot", "-d", "1", "'/tmp/%F_%T_$wx$h.png'", "-e", "'xclip -selection clipboard -target image/png -i $f'", NULL };
+//static const char *screenshotcmd[] = { "scrot", NULL };
+//scrot -d 1 -s '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,				            0xff61,    spawn,          {.v = escrotumcmd } },
+	{ 0,				            0xff61,    spawn,          {.v = screenshotcmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
